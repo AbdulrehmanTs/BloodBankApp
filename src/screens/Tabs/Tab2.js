@@ -2,13 +2,17 @@ import React, {useState} from 'react'
 import {View, Text, Button, StyleSheet, TextInput} from 'react-native'
 import {Header, Title, Right, Body, Form, Item, Label, Input, CheckBox} from 'native-base'
 import database from '@react-native-firebase/database'
+import { AuthContext } from '../../Navigations/AuthProvider'
 
-
-function Tab2(){
+function Tab2(props){
     const [group, setGroup] = useState('')
     const [fullname, setFullName] = useState('');
     const [age, setAge] = useState('');
     const [lastDonate, setLastDonote] = useState('')
+
+
+    const {register} = useContext(AuthContext);
+
     const submit = ()=>{
         let users= {
             fullname,
@@ -18,9 +22,10 @@ function Tab2(){
         }
         console.log("User:> ", users)
         // database().ref('/').child('user').push(users)
-
         setFullName("")
         setAge("")
+
+        props.navigation.navigate('Profile')
 
     }
     return(
@@ -109,7 +114,7 @@ function Tab2(){
               <Input value={lastDonate} onChangeText={(text)=>setLastDonote(text)} placeholder={"Enter"} />
             </Item>
 
-            <Button onPress={submit} title={'Submit'}></Button>
+            <Button onPress={()=> register(email, password)} title={'Submit'}></Button>
 
           </Form>
           

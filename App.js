@@ -7,7 +7,7 @@
  */
 
 import React, {useState, useEffect} from 'react';
-import AppNavigation from './src/config/AppNavigation'
+import AppStack from './src/Navigations/AppStack'
 import WelcomeScreen from './src/screens/Welcome'
 
 const App = () => {
@@ -28,7 +28,7 @@ const App = () => {
 
   return (
     <>
-      <AppNavigation />
+      <AppStack />
     </>
   );
 };

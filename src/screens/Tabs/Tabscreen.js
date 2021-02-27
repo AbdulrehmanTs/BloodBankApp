@@ -1,11 +1,18 @@
-import * as React from 'react';
-import { Container, Header, Tab, Tabs, Body, Right, Title } from 'native-base';
+import React, {useState} from 'react';
+import {Text} from 'react-native'
+import { Container, Header, Tab, Tabs, Body, Right, Title} from 'native-base';
 import Tab1 from './Tab1';
 import Tab2 from './Tab2';
 import Tab3 from './Tab3';
 
+import profile from '../profile'
 
 export default function Tabscreen() {
+
+  const [porfile, setProfile] = useState(true);
+  profileChange = ()=>{
+    setProfile(false)
+  }
     return (
       <Container>
         <Header hasTabs >
