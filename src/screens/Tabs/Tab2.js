@@ -3,15 +3,19 @@ import {View, Text, Button, StyleSheet, TextInput} from 'react-native'
 import {Header, Title, Right, Body, Form, Item, Label, Input, CheckBox} from 'native-base'
 import database from '@react-native-firebase/database'
 import { AuthContext } from '../../Navigations/AuthProvider'
+import { useNavigation } from '@react-navigation/core'
 
-function Tab2(props){
-    const [group, setGroup] = useState('')
+function Tab2(){
+
+  const navigation = useNavigation();
+    const [group, setGroup] = useState('');
     const [fullname, setFullName] = useState('');
     const [age, setAge] = useState('');
-    const [lastDonate, setLastDonote] = useState('')
+    const [lastDonate, setLastDonote] = useState('');
 
+    
 
-    const {register} = useContext(AuthContext);
+    // const {register} = useContext(AuthContext);
 
     const submit = ()=>{
         let users= {
@@ -25,7 +29,8 @@ function Tab2(props){
         setFullName("")
         setAge("")
 
-        props.navigation.navigate('Profile')
+        // props.navigation.navigate('Profile')
+        navigation.navigate('Profile')
 
     }
     return(

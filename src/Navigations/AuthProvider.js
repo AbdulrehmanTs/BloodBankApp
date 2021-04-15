@@ -1,9 +1,12 @@
-import React, { createContext } from 'react'
+import React, { createContext, useState } from 'react'
 import auth from '@react-native-firebase/auth'
+// import LoginScreen from '../screens/LoginScreen'
+// import RegisterScreen from '../screens/RegisterScreen'
 
 export const AuthContext = createContext();
 
-export const AuthProvider = ({children})=>{
+
+const AuthProvider = ({children})=>{
     const [user, setUser] = useState(null)
     return (
         <AuthContext.Provider
@@ -38,3 +41,5 @@ export const AuthProvider = ({children})=>{
         </AuthContext.Provider>
     )
 }
+
+export default AuthProvider;
