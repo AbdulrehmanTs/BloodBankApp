@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native'
 import { useNavigation } from '@react-navigation/core';
 import { ListItem, Thumbnail, Text, Left, Body, Right, Button } from 'native-base';
 
-const userContext = createContext()
+export const userContext = createContext()
 
 const User = ({
     children,
@@ -48,9 +48,6 @@ const User = ({
 }
 
 export default User;
-export {
-    userContext
-}
 
 
 const styles = StyleSheet.create({

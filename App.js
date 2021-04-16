@@ -6,29 +6,29 @@
  * @flow strict-local
  */
 
-import React, {useState, useEffect} from 'react';
-import AppStack from './src/Navigations/AppStack'
-import WelcomeScreen from './src/screens/Welcome'
+import React, { useState, useEffect } from 'react';
+import WelcomeScreen from './src/screens/Welcome';
+import Providers from './src/Navigations/index'
 
 const App = () => {
   const [welcomeScreen, setWelcomescreen] = useState(true);
-  
-  useEffect(()=>{
-    setTimeout(()=>{
+
+  useEffect(() => {
+    setTimeout(() => {
       setWelcomescreen(false)
     }, 1500);
   }, []);
 
-  if (welcomeScreen){
-    return(
-      <WelcomeScreen/>
+  if (welcomeScreen) {
+    return (
+      <WelcomeScreen />
     )
   }
 
 
   return (
     <>
-      <AppStack />
+      <Providers/>
     </>
   );
 };

@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react'
-import { View, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-native'
+import { View, Text, StyleSheet } from 'react-native'
 
 import FormInput from '../components/FormInput'
 import FormButton from '../components/FormButton'
@@ -17,7 +17,6 @@ const LoginScreen = () => {
     const navigation = useNavigation()
 
     return (
-        <AuthContext>
             <View style={styles.container}>
                 <Text style={styles.loginTitle}>Log in</Text>
                 <FormInput
@@ -41,7 +40,7 @@ const LoginScreen = () => {
                 />
 
                 <View style={styles.registerText}>
-                    <Text>Don't have an account? <Text style={styles.registerButton} onPress={() => navigation.navigate('register')}> Register Here </Text> </Text>
+                    <Text>Don't have an account? <Text style={styles.registerButton} onPress={() => navigation.navigate('SignupScreen')}> Register Here </Text> </Text>
                 </View>
 
                 <SocialButton
@@ -60,7 +59,6 @@ const LoginScreen = () => {
                     onPress={() => googleLogin()}
                 />
             </View>
-        </AuthContext>
     )
 }
 

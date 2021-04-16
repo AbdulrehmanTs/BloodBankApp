@@ -1,44 +1,45 @@
 import React, { useContext, useState } from 'react'
 import { View, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-native'
-
 import FormInput from '../components/FormInput'
 import FormButton from '../components/FormButton'
 import SocialButton from '../components/SocialButton'
 import { useNavigation } from '@react-navigation/core'
-import {AuthContext} from '../Navigations/AuthProvider'
+import { AuthContext } from '../Navigations/AuthProvider'
 
-const Register = () => {
-    const [fullName, setFullName] = useState();
+const SignupScreen = () => {
+
     const [email, setEmail] = useState();
-    const { Register } = useContext(AuthContext)
-    
-    
+    const [password, setPassword] = useState();
+    const { register } = useContext(AuthContext)
+
+
     const navigation = useNavigation()
 
     return (
         <View style={styles.container}>
-            <Text style={styles.loginTitle}>Log in</Text>
-            <FormInput
-                labelValue={fullName}
-                onChangeText={(userName) => setFullName(userName)}
-                iconType="user"
-                placeholderText="Enter Full Name"
-            />
+            <Text style={styles.loginTitle}>Register New Account</Text>
             <FormInput
                 labelValue={email}
                 onChangeText={(userEmail) => setEmail(userEmail)}
                 iconType="mail"
                 placeholderText="Email"
             />
+            <FormInput
+                labelValue={password}
+                onChangeText={(userPassword) => setPassword(userPassword)}
+                iconType="lock"
+                placeholderText="Password"
+                secureTextEntry={true}
+            />
 
             <FormButton
                 buttonTitle={"Register"}
-                onPress={() => Register(fullName, email)}
+                onPress={() => register(email, password)}
             />
 
             <TouchableOpacity
                 style={styles.navButton}
-                onPress={() => navigation.navigate('loginScreen')}>
+                onPress={() => navigation.navigate('LoginScreen')}>
                 <Text style={styles.navButtonText}>Have an account? Sign In</Text>
             </TouchableOpacity>
 
@@ -62,7 +63,7 @@ const Register = () => {
 }
 
 
-export default Register;
+export default SignupScreen;
 
 
 const styles = StyleSheet.create({
@@ -85,12 +86,12 @@ const styles = StyleSheet.create({
         color: 'red'
     },
     navButton: {
-    marginTop: 15,
+        marginTop: 15,
     },
     navButtonText: {
-    fontSize: 18,
-    fontWeight: '500',
-    color: '#2e64e5',
-    fontFamily: 'Lato-Regular',
+        fontSize: 18,
+        fontWeight: '500',
+        color: '#2e64e5',
+        fontFamily: 'Lato-Regular',
     },
 })

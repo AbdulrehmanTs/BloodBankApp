@@ -1,14 +1,30 @@
-import React, { useState, useEffect } from 'react';
-import { Text } from 'react-native'
+import React, { useEffect, useContext, useState } from 'react';
+import auth from '@react-native-firebase/auth'
 import { Container, Header, Tab, Tabs, Body, Right, Title } from 'native-base';
+import AuthStack from '../../Navigations/AuthStack.js'
+import { AuthContext } from '../../Navigations/AuthProvider'
 import Tab1 from './Tab1';
-import Tab2 from './Tab2';
 import Tab3 from './Tab3';
 
 
+import Profile from '../Profile'
+
 export default function Tabscreen() {
 
-  const [profile, setProfile] = useState(false);
+  const [initializing, setInitializing] = useState(true);
+  const { user, setUser } = useContext(AuthContext);
+
+  const onAuthStateChanged = (user) => {
+    setUser(user);
+    if (initializing) setInitializing(false);
+  }
+
+  useEffect(() => {
+    const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
+    return subscriber; // unsubscribe on unmount
+  }, [])
+
+  if (initializing) return null;
 
   return (
     <Container>
@@ -24,7 +40,7 @@ export default function Tabscreen() {
           <Tab1 />
         </Tab>
         <Tab heading="Donate">
-          <Tab2 />
+          {user ? <Profile /> : <AuthStack />}
         </Tab>
         <Tab heading="About">
           <Tab3 />
