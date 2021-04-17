@@ -6,9 +6,23 @@ import AuthStack from './AuthProvider'
 import AppStack from './AppStack'
 
 const Routes = () => {
+    const [initializing, setInitializing] = useState(true);
+    const { user, setUser } = useContext(AuthContext);
+  
+    const onAuthStateChanged = (user) => {
+      setUser(user);
+      if (initializing) setInitializing(false);
+    }
+  
+    useEffect(() => {
+      const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
+      return subscriber; // unsubscribe on unmount
+    }, [])
+  
+    if (initializing) return null;
     return (
         <NavigationContainer>
-            <AppStack />
+            {user ? <AppStack /> : <AuthStack />}
         </NavigationContainer>
     );
 };
