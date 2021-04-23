@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { StyleSheet } from 'react-native'
 import { Container, Header, Content, List, Title, Body, Right } from 'native-base';
 import User from "../../components/User"
@@ -70,7 +70,7 @@ function HomeTab() {
       userAge: 29
     },
 
-  ]
+  ];
   return (
     <>
       <Container>

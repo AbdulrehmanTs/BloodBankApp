@@ -24,7 +24,8 @@ const LoginScreen = () => {
                     onChangeText={(userEmail) => setEmail(userEmail)}
                     iconType="mail"
                     placeholderText="Email Address"
-                    keyBoardType="email-address"
+                    keyboardType="email-address"
+                    autoCapitalize="none"
                 />
                 <FormInput
                     labelValue={password}

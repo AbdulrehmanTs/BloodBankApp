@@ -5,21 +5,43 @@ import FormButton from '../components/FormButton'
 import SocialButton from '../components/SocialButton'
 import { useNavigation } from '@react-navigation/core'
 import { AuthContext } from '../Navigations/AuthProvider'
+import database from '@react-native-firebase/database';
+
+const reference = database().ref('/users');
 
 const SignupScreen = () => {
+    const [name, setName] = useState();
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
+    const [confirmPassword, setConfirmPassword] = useState();
     const { register } = useContext(AuthContext)
     const navigation = useNavigation()
 
+
+    // reference.on("value", snapshot=>{
+    //     console.log("user Data", snapshot.val())
+    // })
+
+    const submit = () => {
+        register(email, password);
+        reference.set({name, email, password})
+    }
     return (
         <View style={styles.container}>
             <Text style={styles.loginTitle}>Register New Account</Text>
+            <FormInput
+                labelValue={name}
+                onChangeText={(userName) => setName(userName)}
+                iconType="user"
+                placeholderText="User Name"
+            />
             <FormInput
                 labelValue={email}
                 onChangeText={(userEmail) => setEmail(userEmail)}
                 iconType="mail"
                 placeholderText="Email"
+                keyboardType="email-address"
+                autoCapitalize="none"
             />
             <FormInput
                 labelValue={password}
@@ -28,10 +50,17 @@ const SignupScreen = () => {
                 placeholderText="Password"
                 secureTextEntry={true}
             />
+            <FormInput
+                labelValue={confirmPassword}
+                onChangeText={(confirmPassword) => setConfirmPassword(confirmPassword)}
+                iconType="lock"
+                placeholderText="confirm password"
+                secureTextEntry={true}
+            />
 
             <FormButton
                 buttonTitle={"Register"}
-                onPress={() => register(email, password)}
+                onPress={() => submit()}
             />
 
             <TouchableOpacity

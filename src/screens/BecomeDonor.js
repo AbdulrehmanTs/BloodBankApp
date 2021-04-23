@@ -4,10 +4,11 @@ import { UserContext } from '../components/User'
 import { AuthContext } from '../Navigations/AuthProvider'
 
 export default function BecomeDonor() {
-    const {user} = useContext(AuthContext)
+    const {user, logOut} = useContext(AuthContext)
     return (
         <View>
             <Text>{user.email}</Text>
+            <Text onPress={()=>logOut()}>logOut</Text>
         </View>
     )
 }
