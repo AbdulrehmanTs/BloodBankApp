@@ -2,11 +2,12 @@ import React, { Component, useContext } from 'react'
 import { Header, Right, Body, Title, } from 'native-base'
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import { AuthContext } from '../Navigations/AuthProvider'
+import { UserContext } from '../components/User'
 
 const Profile = () => {
-  const { logOut } = useContext(AuthContext)
+  const { user, logOut } = useContext(AuthContext)
 
-  const { user } = useContext(AuthContext)
+  const { userName, userStatus, bloodGroup, userAge } = useContext(UserContext)
 
   return (
     <>
@@ -20,15 +21,16 @@ const Profile = () => {
 
       <View>
         <Text style={styles.welcomeHeader}>WELCOME</Text>
-        <Text style={styles.welcomeDescription}>ThankYou You {user.email} have been Added to the list</Text>
-        <TouchableOpacity 
-        onPress={() => logOut() }
+        <Text>{userName}</Text>
+        <Text style={styles.welcomeDescription}>ThankYou You {user.email} have been Added to our Users list</Text>
+        <TouchableOpacity
+          onPress={() => logOut()}
         >
           <Text >Logout</Text>
 
         </TouchableOpacity>
       </View>
-    </>
+      </>
   )
 }
 

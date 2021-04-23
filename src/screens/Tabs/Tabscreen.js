@@ -1,14 +1,15 @@
 import React from 'react';
 import { Container, Header, Tab, Tabs, Body, Right, Title } from 'native-base';
-import Tab1 from './Tab1';
+import HomeTab from './HomeTab';
 import Tab3 from './Tab3';
-
-
 import Profile from '../Profile'
+import BecomeDonor from '../BecomeDonor'
+
 
 export default function Tabscreen() {
 
   return (
+
     <Container>
       <Header hasTabs >
         <Right>
@@ -19,15 +20,17 @@ export default function Tabscreen() {
       </Header>
       <Tabs>
         <Tab heading="Home">
-          <Tab1 />
+          <HomeTab />
         </Tab>
         <Tab heading="Donate">
-          <Profile />
+          {/* <Profile /> */}
+          <BecomeDonor />
         </Tab>
         <Tab heading="About">
           <Tab3 />
         </Tab>
       </Tabs>
     </Container>
+
   );
 }

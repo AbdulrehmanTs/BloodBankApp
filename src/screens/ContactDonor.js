@@ -1,17 +1,24 @@
 import React, { useContext } from 'react';
-import { View, Text } from 'react-native'
-import { userContext } from '../components/User'
+import { View, Text, StyleSheet } from 'react-native'
 
 
 
 function ContactDonor() {
-    const { userName } = useContext(userContext)
-
+    const { wrapper } = styles;
     return (
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-            <Text>{userName}</Text>
+        <View style={wrapper}>
+            <Text>your Age is 25</Text>
         </View>
     )
 }
 
 export default ContactDonor;
+
+
+const styles = StyleSheet.create({
+    wrapper: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+})

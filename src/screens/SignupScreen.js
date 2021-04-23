@@ -7,12 +7,9 @@ import { useNavigation } from '@react-navigation/core'
 import { AuthContext } from '../Navigations/AuthProvider'
 
 const SignupScreen = () => {
-
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
     const { register } = useContext(AuthContext)
-
-
     const navigation = useNavigation()
 
     return (

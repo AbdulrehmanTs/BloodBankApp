@@ -3,20 +3,13 @@ import { StyleSheet } from 'react-native'
 import { useNavigation } from '@react-navigation/core';
 import { ListItem, Thumbnail, Text, Left, Body, Right, Button } from 'native-base';
 
-export const userContext = createContext()
+export const UserContext = createContext()
 
-const User = ({
-    children,
-    userImage,
-    userName,
-    userStatus,
-    bloodGroup,
-    userAge,
-}) => {
+const User = ({ children, userName, userAge, userStatus, bloodGroup, userImage }) => {
 
     const navigation = useNavigation()
     return (
-        <userContext.Provider value={{
+        <UserContext.Provider value={{
             userName,
             userImage,
             userAge,
@@ -30,7 +23,7 @@ const User = ({
                 </Left>
 
                 <Body>
-                    <Text name="Smith Dav">{userName} <Text note >{userStatus}</Text></Text>
+                    <Text> {userName} <Text note >{userStatus}</Text></Text>
 
                     <Text note numberOfLines={1} style={styles.bldGroup} >{bloodGroup}
                         <Text note style={styles.age} >Age {userAge}</Text>
@@ -43,7 +36,7 @@ const User = ({
                     </Button>
                 </Right>
             </ListItem>
-        </userContext.Provider>
+        </UserContext.Provider>
     )
 }
 
